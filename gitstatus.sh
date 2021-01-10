@@ -184,7 +184,24 @@ fi
 
 UPSTREAM_TRIMMED=`echo $upstream |xargs`
 
-printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
+username=$(git config --get user.name)
+email=$(git config --get user.email)
+
+# 00 %s\n branch
+# 01 %s\n remote
+# 02 %s\n remote url
+# 03 %s\n upstream
+# 04 %s\n num staged
+# 05 %s\n num conflicts
+# 06 %s\n num changed
+# 07 %s\n num untracked
+# 08 %s\n num stashed
+# 09 %s\n clean
+# 10 %s\n username
+# 11 %s\n email
+
+
+printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
   "${branch}${state}" \
   "${remote}" \
   "${remote_url}" \
@@ -194,6 +211,8 @@ printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
   "${num_changed}" \
   "${num_untracked}" \
   "${num_stashed}" \
-  "${clean}"
+  "${clean}" \
+  "${username}" \
+  "${email}"
 
 exit
